@@ -35,12 +35,20 @@ async function main() {
   `;
   console.log(`cleared last-run summary on ${cleared.length} job(s)`);
 
-  // Mara's placeholder test job — she registers her own on first sync.
+  // Mara's placeholder rows — she registers her own on first real sync.
   const mara = await sql`
-    DELETE FROM mc_cron_jobs WHERE agent = 'mara' AND external_id = 'mara-test-1'
+    DELETE FROM mc_cron_jobs
+     WHERE agent = 'mara'
+       AND external_id IN ('mara-test-1', 'REPLACE_WITH_YOUR_HERMES_JOB_ID')
     RETURNING name
   `;
   console.log(`removed ${mara.length} placeholder mara job(s)`);
+
+  const maraVersions = await sql`
+    DELETE FROM mc_versions WHERE component = 'mara-app' AND version = '0.4.2'
+    RETURNING version
+  `;
+  console.log(`removed ${maraVersions.length} placeholder mara-app version(s)`);
 
   console.log('\n✓ Seed data purged. Dashboard now shows only real telemetry.');
 }
