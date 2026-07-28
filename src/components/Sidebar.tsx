@@ -11,12 +11,16 @@ import {
   Brain, 
   FileText, 
   Users,
+  Timer,
+  Cpu,
   LogOut
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Cron Jobs', href: '/cron', icon: Timer },
+  { name: 'Models & Spend', href: '/models', icon: Cpu },
   { name: 'Task Board', href: '/tasks', icon: CheckSquare },
   { name: 'Calendar', href: '/calendar', icon: Calendar },
   { name: 'Projects', href: '/projects', icon: FolderKanban },
@@ -34,12 +38,18 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-5 border-b border-[#1f1f23]">
         <div className="flex items-center gap-3">
-          <img 
-            src="/marty-logo.png" 
-            alt="Marty" 
-            className="w-10 h-10 rounded-lg object-cover"
-          />
-          <h1 className="font-semibold text-white">Mission Control</h1>
+          <div className="flex -space-x-2">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-white text-sm font-bold ring-2 ring-[#0c0c0f]" title="Marty">
+              M
+            </div>
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-400 to-fuchsia-500 flex items-center justify-center text-white text-sm font-bold ring-2 ring-[#0c0c0f]" title="MARA">
+              A
+            </div>
+          </div>
+          <div>
+            <h1 className="font-semibold text-white leading-tight">Mission Control</h1>
+            <p className="text-[11px] text-zinc-500">Marty &amp; MARA</p>
+          </div>
         </div>
       </div>
 
